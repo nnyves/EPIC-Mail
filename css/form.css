@@ -8,6 +8,62 @@
     border-radius: 5px;
     box-shadow: 0px 0px 10px #444444;
 }
+
+.card .title,.card .register-link a,.card form input,.card form button,.reset-link{
+    margin: 30px 5%;
+    width: 90%;
+    display: block;
+    box-sizing: border-box;
+    font-size: 0.94118em;
+}
+.card .title{
+    margin-top: 50px;
+    text-align: center;
+    font-size: 1.05882em;
+    font-weight: 500;
+    color: #26282a;
+}
+.card form input{
+    padding: 5px 10px;
+    border: 0px;
+    border-bottom: 1px solid #b9bdc5;
+}
+.card form input:focus{
+    padding-bottom: 4px;
+    border-bottom-width: 2px;
+    border-bottom-color: #188fff;
+}
+.card form button{
+    padding: 10px;
+    text-align: center;
+    background: #188fff;
+    color: #ffffff;
+    border:0px solid;
+    border-radius: 5px;
+}
+.card form button:hover{
+    background: #188faa;
+}
+.card .reset-link a{
+    text-align: center;
+    text-decoration: none;
+}
+.card .reset-link a:hover{
+    text-decoration: underline;
+}
+.card .register-link a{
+    text-align: center;
+    text-decoration: none;
+    padding: 10px;
+    border: 3px solid #188fff;
+    color: #188fff;
+    background: #ffffff;
+    border-radius: 5px;
+}
+.card .register-link a:hover{
+    background: #188fff;
+    color: #ffffff;
+}
 @media only screen and (max-width: 400px){
     .card{
         margin: 30px auto;
