@@ -1,5 +1,11 @@
 /* Giving the backgorund the body */
 body{
-    background: #dddddd;
+    background: #cccbcb;
     margin: 0px;
+    width: 100%;
+    height: 100%;
+}
+html{
+    width: 100%;
+    height: 100%;
 }
