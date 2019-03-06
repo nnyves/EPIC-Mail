@@ -9,7 +9,7 @@
     box-shadow: 0px 0px 10px #444444;
 }
 
-.card .title,.card .register-link a,.card form input,.card form button,.reset-link,.sign-link{
+.card .title,.card .register-link a,.card form input,.card form button,.reset-link,.sign-link,.main form textarea,.main form input,.main form button{
     margin: 30px 5%;
     width: 90%;
     display: block;
@@ -30,24 +30,24 @@
     text-align: center;
     color: #26282a;
 }
-.card .title{
+.card .title,.main .title{
     margin-top: 50px;
     text-align: center;
     font-size: 1.05882em;
     font-weight: 500;
     color: #26282a;
 }
-.card form input{
+.card form input,.main form input,.main form textarea{
     padding: 5px 10px;
     border: 0px;
     border-bottom: 1px solid #b9bdc5;
 }
-.card form input:focus{
+.card form input:focus,.main input:focus,.main form textarea:hover{
     padding-bottom: 4px;
     border-bottom-width: 2px;
     border-bottom-color: #188fff;
 }
-.card form button{
+.card form button,.main form button{
     padding: 10px;
     text-align: center;
     background: #188fff;
@@ -55,7 +55,7 @@
     border:0px solid;
     border-radius: 5px;
 }
-.card form button:hover{
+.card form button:hover,.main form button:hover{
     background: #188faa;
 }
 .card .reset-link a{
@@ -77,6 +77,10 @@
 .card .register-link a:hover{
     background: #188fff;
     color: #ffffff;
+}
+.main form textarea{
+    height: 300px;
+    border: 1px solid #b9bdc5;
 }
 @media only screen and (max-width: 400px){
     .card{
