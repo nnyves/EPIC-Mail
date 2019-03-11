@@ -104,7 +104,7 @@
 }
 .main-nav{
     border-bottom: 1px solid #e6e6e6;
-    display: flex;
+    display: none;
 }
 .main-nav .nav-item{
     padding: 15px 10px;
@@ -148,4 +148,18 @@
 }
 .read .mail-title,.read .mail-details b{
     font-weight: 100;
+}
+@media only screen and (max-width: 600px){
+    .main-nav{
+        display: flex;
+    }
+    .navigation{
+        display: none;
+    }
+    .group{
+        display: none;
+    }
+    .main{
+        width: 100%;
+    }
 }
