@@ -1,0 +1,63 @@
+/* Top toolbar mail */
+.mail-toolbar{
+    border-bottom: 1px solid #e6e6e6;
+    display: block;
+    text-align: center;
+}
+.mail-toolbar .btn{
+    padding: 15px 10px;
+    padding-left: 70px;
+    opacity: 0.8;
+    color: #202124;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 15px;
+}
+.mail-toolbar .btn:hover{
+    color: black;
+}
+/* View of a single mail */
+.mailview{
+    margin:0px 20px;
+}
+.mailview-title{
+    font-size: 20px;
+    color: #202124;
+    padding:20px 0px;
+    border-bottom: 1px solid #e6e6e6;
+}
+.mailview-from{
+    color: #b9bdc5;
+    padding: 0px 0px;
+}
+.mailview-from b{
+    color: #202124;
+}
+.mailview-mail{
+    padding: 30px 0px;
+}
+/* Relpying to the email */
+.mailview-reply textarea{
+    height: 100px;
+    border: 1px solid #b9bdc5;
+    padding: 5px 10px;
+    border: 0px;
+    border-bottom: 1px solid #b9bdc5;
+    display: block;
+    width: 70%;
+}
+.mailview-reply button{
+    padding: 10px;
+    text-align: center;
+    background: #188fff;
+    color: #ffffff;
+    border:0px solid;
+    border-radius: 5px;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+.mailview-reply button:hover{
+    background: #188faa;
+    display: block;
+}
