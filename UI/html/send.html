@@ -37,16 +37,16 @@
                 <div class="title">
                     Send Message
                 </div>
-                <form action="">
-                    <div><input name="to" type="input" placeholder="To"></div>
+                <form action="" method="POST">
+                    <div><input name="to" type="email" placeholder="To" required></div>
                     <div><input name="subject" type="input" placeholder="Subject"></div>
                     <div>
-                        <textarea>
-                        </textarea>
+                        <textarea required></textarea>
                     </div>
                     <div>
                         <button>Send Message</button>
                     </div>
+                    <a href="dashboard.html" class="cancel">Cancel</a>
                 </form>
             </div>
             <div class="group">
