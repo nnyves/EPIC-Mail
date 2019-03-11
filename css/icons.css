@@ -20,3 +20,9 @@
 .fa-paper-plane:before {
     content: "\f1d8"; 
 }
+.fa-trash:before {
+    content: "\f1f8"; 
+}
+.fa-arrow-right:before {
+    content: "\f061"; 
+}
