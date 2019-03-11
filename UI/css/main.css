@@ -143,3 +143,9 @@
 .mail-item .mail-details b{
     color:  #202124
 }
+.read{
+    background: #eeeeee;
+}
+.read .mail-title,.read .mail-details b{
+    font-weight: 100;
+}
