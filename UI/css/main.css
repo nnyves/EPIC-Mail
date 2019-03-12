@@ -24,6 +24,7 @@
     display: inline-block;
     padding: 10px;
     background: #e6e6e6;
+    border-radius: 30px;
 }
 .up-navigation .search:focus{
     background: #ffffff;
@@ -81,12 +82,16 @@
 }
 .navigation .nav{
     padding-left: 0px;
+    margin: 0px 30px;
+    box-sizing: content-box;
 }
 .navigation .nav a{
     text-decoration: none;
     display: block;
     border-bottom-right-radius: 32px;
     border-top-right-radius: 32px;
+    border-bottom-left-radius: 32px;
+    border-top-left-radius: 32px;
 }
 .navigation .nav li{
     display: block;
