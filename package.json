@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --require babel-register Server/tests/*.test.js",
-    "start": "nodemon --exec babel-node Server/app.js",
-    "run": "babel-node Server/app.js"
+    "test": "nyc --reporter=text mocha --require babel-register Server/tests/*.test.js",
+    "dev": "nodemon --exec babel-node Server/app.js",
+    "start": "babel-node Server/app.js"
   },
   "repository": {
     "type": "git",
@@ -17,23 +17,22 @@
     "url": "https://github.com/nnyves/EPIC-Mail/issues"
   },
   "dependencies": {
+    "@babel/cli": "^7.2.3",
     "@babel/preset-env": "^7.3.4",
     "@babel/register": "^7.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "chai": "^4.2.0",
     "chai-http": "^4.2.1",
-    "express": "^4.16.4",
-    "mocha": "^6.0.2",
-    "nodemon": "^1.18.10"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-register": "^6.26.0",
     "eslint": "^5.15.1",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.16.0"
+    "eslint-plugin-import": "^2.16.0",
+    "express": "^4.16.4",
+    "mocha": "^6.0.2",
+    "nodemon": "^1.18.10",
+    "nyc": "^13.3.0"
   }
 }
