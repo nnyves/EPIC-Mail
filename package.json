@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --require babel-register Server/tests/*.test.js",
-    "start": "nodemon --exec babel-node Server/app.js",
-    "run": "babel-node Server/app.js"
+    "dev": "nodemon --exec babel-node Server/app.js",
+    "start": "babel-node Server/app.js"
   },
   "repository": {
     "type": "git",
@@ -25,9 +25,7 @@
     "chai-http": "^4.2.1",
     "express": "^4.16.4",
     "mocha": "^6.0.2",
-    "nodemon": "^1.18.10"
-  },
-  "devDependencies": {
+    "nodemon": "^1.18.10",
     "@babel/cli": "^7.2.3",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
