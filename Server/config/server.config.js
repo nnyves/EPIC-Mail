@@ -1,4 +1,4 @@
 export default {
-  portNumber: 8000,
+  portNumber: process.env.PORT || 8000,
   version: 'v1',
 };
