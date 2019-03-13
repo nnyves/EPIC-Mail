@@ -55,10 +55,12 @@
     box-sizing: border-box;
     background: #ffffff;
     border-left: 1px solid #b9bdc5;
+    padding-top: 20px;
 }
 .group{
     height: 100%;
     width: 20%;
+    margin: 20px;
 }
 .compose-button{
     display: block;
@@ -155,6 +157,40 @@
 }
 .read .mail-title,.read .mail-details b{
     font-weight: 100;
+}
+/* Group style */
+.group input{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 30px;
+    border: 0px;
+    background: #e6e6e6;
+    padding-left: 30px;
+}
+.group ul{
+    padding: 0px;
+    color: #ffffff;
+}
+.group ul li{
+    display: flex;
+}
+.group ul li div{
+    padding: 10px;
+    width: 90%;
+}
+.group ul li a{
+    color: #ffffff;
+    background: #ff6666;
+    text-decoration: none;
+    display: none;
+    padding: 10px;
+}
+.group ul li:hover{
+    background: rgba(255, 255, 255, 0.7);
+}
+.group ul li:hover a{
+    display: block;
 }
 @media only screen and (max-width: 600px){
     .main-nav{
