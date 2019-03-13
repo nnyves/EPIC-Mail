@@ -1,14 +1,13 @@
 .up-navigation{
-    background: #ffffff;
     border-bottom: 1px solid #e6e6e6;
+    background: url('../assets/images/backgrounds-blank-blue-953214.jpg');
 }
 .up-navigation .logo{
-    color:#202124;
+    color:#ffffff;
     font-size: 20px;
     margin: 20px 100px;
     display: inline-block;
     font-weight: bold;
-    opacity: 0.8;
 }
 
 .up-navigation .logo img{
@@ -49,7 +48,6 @@
 .navigation{
     height: 100%;
     width: 20%;
-    background: #ffffff;
 }
 .main{
     height: 100%;
@@ -72,7 +70,7 @@
     border-top-right-radius: 32px;
     box-shadow: 0px 0px 10px #b9bdc5;
     padding: 10px;
-    color: #202124;
+    color: #ffffff;
     text-decoration: none;
     text-align: center;
     font-weight: 500;
@@ -95,7 +93,7 @@
 }
 .navigation .nav li{
     display: block;
-    color: #202124;
+    color: #ffffff;
     padding: 10px;
     padding-left: 50px;
 }
@@ -106,6 +104,10 @@
 }
 .navigation .nav a:hover{
     background: #e6e6e6;
+}
+.navigation .nav a:hover li{
+    color: #188fff;
+    box-shadow: 0px 0px 20px #b9bdc5;
 }
 .main-nav{
     border-bottom: 1px solid #e6e6e6;
