@@ -8,8 +8,8 @@ class User {
   static findByEmail(_email) {
     let result = null;
     usersTable.forEach((user) => {
-      let { email } = user;
-      if (email == _email) {
+      const { email } = user;
+      if (email === _email) {
         result = user;
       }
     });
