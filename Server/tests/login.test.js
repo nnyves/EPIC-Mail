@@ -63,4 +63,14 @@ describe('Login', () => {
         done();
       });
   });
+  it('It should have token',(done) => {
+    chai.request(app)
+      .post('/api/v1/auth/login')
+      .type('form')
+      .send({ email: 'yvesndagije@gmail.com', password: 'yves@1' })
+      .end((error, result) => {
+        result.body.should.have.property('data').have.property('token');
+        done();
+      });
+  });
 });
