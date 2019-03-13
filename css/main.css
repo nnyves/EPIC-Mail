@@ -35,10 +35,23 @@
     font-size: 15px;
     background: transparent;
     display: block;
-    margin-left: 30px;
+    margin-left: 20px;
 }
 .up-navigation .search input:focus{
     border: 0px solid #000;
+}
+.up-navigation .logout{
+    margin-top:30px;
+    float: right;
+    margin-right: 100px;
+}
+.up-navigation .logout a{
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+}
+.up-navigation .logout a:hover{
+    text-decoration: underline;
 }
 
 .content{
