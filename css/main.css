@@ -24,6 +24,7 @@
     padding: 10px;
     background: #e6e6e6;
     border-radius: 30px;
+    box-shadow: 0px 0px 20px #b9bdc5;
 }
 .up-navigation .search:focus{
     background: #ffffff;
@@ -167,6 +168,7 @@
     border: 0px;
     background: #e6e6e6;
     padding-left: 30px;
+    box-shadow: 0px 0px 20px #b9bdc5;
 }
 .group ul{
     padding: 0px;
