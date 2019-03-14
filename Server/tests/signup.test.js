@@ -3,7 +3,7 @@ import chaiHttp from 'chai-http';
 import app from '../app';
 
 
-
+const should = chai.should();
 chai.use(chaiHttp);
 describe('Register API Tests',() =>{
   it('It should be an object', (done) => {

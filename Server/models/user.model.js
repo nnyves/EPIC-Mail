@@ -1,8 +1,21 @@
 import usersTable from '../tables/users.table';
+import inboxTable from '../tables/inbox.table';
+import Message from './message.model';
 
 class User {
   constructor(_user) {
     this.user = _user;
+  }
+  
+  static findByIdn(_id) {
+    let result = null;
+    usersTable.forEach((user) => {
+      const { id } = user;
+      if (id === _id) {
+        result = user;
+      }
+    });
+    return result;
   }
 
   static findByEmail(_email) {
@@ -55,6 +68,16 @@ class User {
       const { email } = user;
       if (email === this.user.email) {
         result = user.id;
+      }
+    });
+    return result;
+  }
+
+  inbox () {
+    
+    const result = inboxTable.filter((value) => {
+      if(value.recieverId === this.user.id){
+        return Message.findById(value.messageId);
       }
     });
     return result;
