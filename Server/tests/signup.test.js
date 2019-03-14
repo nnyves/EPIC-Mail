@@ -2,6 +2,8 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../app';
 
+
+
 chai.use(chaiHttp);
 describe('Register API Tests',() =>{
   it('It should be an object', (done) => {
@@ -37,7 +39,7 @@ describe('Register API Tests',() =>{
     chai.request(app)
       .post('/api/v1/auth/register')
       .type('form')
-      .send({ email: 'yvesndagije@gmail.com', password: 'yves', lastName: 's8', firstName: 'Ndagijimana' })
+      .send({ email: 'yvesndagije@gmail.co', password: 'yves', lastName: 's8', firstName: 'Ndagijimana' })
       .end((error, result) => {
         result.body.should.have.property('status').with.equal(406);
         result.body.should.have.property('errors').with.lengthOf(2);
@@ -62,7 +64,7 @@ describe('Register API Tests',() =>{
       .send({ email: 'yves@gmail.com', password: 'yves@1', lastName: 'Yves', firstName: 'Ndagijimana' })
       .end((error, result) => {
         result.body.should.have.property('status').with.equal(200);
-        result.body.should.have.property('data').with.lengthOf(1);
+        result.body.should.have.nested.property('data[0].token').to.be.a('String');
         done();
       });
   });

@@ -6,7 +6,7 @@ const tokenizer = {
     jwt.verify(token, serverConfig.salt, callback);
   },
   sign(data) {
-    return jwt.sign(data, serverConfig.salt, { expiresIn: '24h' });
+    return jwt.sign(data, serverConfig.salt);
   },
 };
 export default tokenizer;
