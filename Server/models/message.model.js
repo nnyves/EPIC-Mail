@@ -50,7 +50,9 @@ class Message {
       messageId: id,
     };
     sentTable.push(sent);
-    inboxTable.push(reciever);
+    if (status != 'draft') {
+      inboxTable.push(reciever);
+    }
     messageTable.push(msg);
     return msg;
   }
@@ -87,11 +89,36 @@ class Message {
     let result = null;
     messageTable.forEach((user) => {
       const { id } = user;
-      if (id === _id) {
+      if (id === parseInt(_id)) {
         result = user;
       }
     });
     return result;
+  }
+
+  setRead() {
+    this.message.status = 'read';
+  }
+
+  static delete(messageId) {
+    inboxTable.filter((value) => {
+      if (value.messageId == messageId) {
+        let index = inboxTable.indexOf(value);
+        inboxTable.splice(index,1);
+      }
+    });
+    sentTable.filter((value) => {
+      if (value.messageId == messageId) {
+        let index = sentTable.indexOf(value);
+        inboxTable.splice(index,1);
+      }
+    });
+    messageTable.filter((value) => {
+      if (value.id == messageId) {
+        let index = messageTable.indexOf(value);
+        inboxTable.splice(index,1);
+      }
+    });
   }
 }
 
