@@ -1,5 +1,6 @@
 import usersTable from '../tables/users.table';
 import inboxTable from '../tables/inbox.table';
+import sentTable from '../tables/sent.table';
 import Message from './message.model';
 
 class User {
@@ -74,10 +75,47 @@ class User {
   }
 
   inbox () {
-    
-    const result = inboxTable.filter((value) => {
-      if(value.recieverId === this.user.id){
-        return Message.findById(value.messageId);
+    const result = [];
+    inboxTable.filter((value) => {
+      if (value.recieverId === this.user.id) {
+        result.push((new Message(Message.findById(value.messageId))).format());
+      }
+    });
+    return result;
+  }
+
+  unread() {
+    const result = [];
+    inboxTable.filter((value) => {
+      if (value.recieverId === this.user.id) {
+        const msg = Message.findById(value.messageId);
+        if (msg.status === 'sent') {
+          result.push((new Message(msg)).format());
+        }
+      }
+    });
+    return result;
+  }
+
+  draft() {
+    const result = [];
+    sentTable.filter((value) => {
+      if (value.senderId === this.user.id) {
+        const msg = Message.findById(value.messageId);
+        if (msg.status === 'draft') {
+          result.push((new Message(msg)).format());
+        }
+      }
+    });
+    return result;
+  }
+
+  sentMail() {
+    const result = [];
+    sentTable.filter((value) => {
+      if (value.senderId === this.user.id) {
+        const msg = Message.findById(value.messageId);
+        result.push((new Message(msg)).format());
       }
     });
     return result;

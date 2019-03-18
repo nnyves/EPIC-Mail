@@ -18,7 +18,7 @@ class UserController {
     const errors = user.validate();
     if (errors.length === 0) {
       user.save();
-      const token = tokenizer.sign(user.getId());
+      const token = tokenizer.sign({id: user.getId()});
       response.send({ status: 200, data: [{ token }] });
     } else {
       response.send({ status: 406, errors });
