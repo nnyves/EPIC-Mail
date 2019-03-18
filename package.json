@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "nyc --reporter=text mocha --require babel-register Server/tests/*.test.js",
+    "test": "nyc --reporter=text mocha --exit --require babel-register Server/tests/*.test.js",
     "dev": "nodemon --exec babel-node Server/app.js",
     "start": "babel-node Server/app.js"
   },
