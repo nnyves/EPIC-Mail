@@ -1,57 +1,86 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Compose Mail - EPIC Mail</title>
-        <meta name="description" content="List of all mails">
-        <meta name="viewport" content="width=device-width;initial=1.0;">
-        <link rel="stylesheet" href="../css/main.css">
-        <link rel="stylesheet" href="../css/style.css">
-        <link rel="stylesheet" href="../css/icons.css">
-        <link rel="stylesheet" href="../css/form.css">
-    </head>
-    <body>
-        <!-- Adding the top navigation that contains the logo-->
-        <div class="up-navigation">
-            <div class="logo">
-                <img src="../assets/logo.png" />
-                EPIC Mail
-            </div>
-            <div class="search">
-                <input name="search" placeholder="Search mail">
-            </div>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Compose Mail - EPIC Mail</title>
+    <meta name="description" content="List of all mails">
+    <meta name="viewport" content="width=device-width;initial=1.0;">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/icons.css">
+    <link rel="stylesheet" href="../css/form.css">
+</head>
+
+<body>
+    <!-- Adding the top navigation that contains the logo-->
+    <div class="up-navigation">
+        <div class="logo">
+            <img src="../assets/logo.png" />
+            EPIC Mail
         </div>
-        <!-- Contains the navigation and the main mails container-->
-        <div class="content">
-            <div class="navigation">
+        <div class="search">
+            <input name="search" placeholder="Search mail">
+        </div>
+        <div class="logout">
+            <a href="login.html">Logout</a>
+        </div>
+    </div>
+    <!-- Contains the navigation and the main mails container-->
+    <div class="content">
+        <div class="navigation">
+            <div>
+                <a href="send.html" class="compose-button">Compose</a>
+            </div>
+            <ul class="nav">
+                <a href="dashboard.html">
+                    <li><span class="fa fa-envelope"> </span>Inbox</li>
+                </a>
+                <a href="draft.html">
+                    <li><span class="fa fa-file"> </span>Draft</li>
+                </a>
+                <a href="sent-mail.html">
+                    <li><span class="fa fa-paper-plane"> </span>Sent Items</li>
+                </a>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="title">
+                Send Message
+            </div>
+            <form action="" method="POST">
+                <div><input name="to" type="email" placeholder="To" required></div>
+                <div><input name="subject" type="input" placeholder="Subject"></div>
                 <div>
-                    <a href="send.html" class="compose-button">Compose</a>
+                    <textarea required></textarea>
                 </div>
-                <ul class="nav">
-                    <a href="" class="selected"><li><span class="fa fa-envelope"> </span>Inbox</li></a>
-                    <a href=""><li><span class="fa fa-file"> </span>Draft</li></a>
-                    <a href=""><li><span class="fa fa-paper-plane"> </span>Sent Items</li></a>
-                </ul>
-            </div>
-            <div class="main">
-                <div class="title">
-                    Send Message
+                <div>
+                    <button>Send Message</button>
                 </div>
-                <form action="">
-                    <div><input name="to" type="input" placeholder="To"></div>
-                    <div><input name="subject" type="input" placeholder="Subject"></div>
-                    <div>
-                        <textarea>
-                        </textarea>
-                    </div>
-                    <div>
-                        <button>Send Message</button>
-                    </div>
-                </form>
-            </div>
-            <div class="group">
-                .
-            </div>
+                <a href="dashboard.html" class="cancel">Cancel</a>
+            </form>
         </div>
-    </body>
+        <!-- Showing the list of group-->
+        <div class="group">
+            <form>
+                <input type="text" min="4" name="groupname" placeholder="Group name">
+            </form>
+            <ul>
+                <li>
+                    <div>Alpha</div><a href="#">X</a>
+                </li>
+                <li>
+                    <div>Beta</div><a href="#">X</a>
+                </li>
+                <li>
+                    <div>Char</div><a href="#">X</a>
+                </li>
+                <li>
+                    <div>Delta</div><a href="#">X</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+
 </html>

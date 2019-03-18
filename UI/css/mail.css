@@ -23,7 +23,7 @@
 .mailview-title{
     font-size: 20px;
     color: #202124;
-    padding:20px 0px;
+    padding:5px 0px;
     border-bottom: 1px solid #e6e6e6;
 }
 .mailview-from{
@@ -35,8 +35,13 @@
 }
 .mailview-mail{
     padding: 30px 0px;
+    border-bottom: 1px solid #e6e6e6;
+    margin-bottom: 10px;
 }
 /* Relpying to the email */
+.mailview-reply{
+    margin: 20px;
+}
 .mailview-reply textarea{
     height: 100px;
     border: 1px solid #b9bdc5;
@@ -44,7 +49,9 @@
     border: 0px;
     border-bottom: 1px solid #b9bdc5;
     display: block;
-    width: 70%;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 20px 0px;
 }
 .mailview-reply button{
     padding: 10px;

@@ -82,6 +82,16 @@
     height: 300px;
     border: 1px solid #b9bdc5;
 }
+.main .cancel{
+    text-decoration: none;
+    margin: 20px;
+}
+.main .cancel:hover{
+    text-decoration: underline;
+}
+.main .cancel:visited{
+    color: blue;
+}
 @media only screen and (max-width: 400px){
     .card{
         margin: 30px auto;

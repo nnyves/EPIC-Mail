@@ -1,84 +1,113 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Draft - EPIC Mail</title>
-        <meta name="description" content="List of all mails">
-        <meta name="viewport" content="width=device-width;initial=1.0;">
-        <link rel="stylesheet" href="../css/main.css">
-        <link rel="stylesheet" href="../css/style.css">
-        <link rel="stylesheet" href="../css/icons.css">
-        <link rel="stylesheet" href="../css/mail.css">
-    </head>
-    <body>
-        <!-- Adding the top navigation that contains the logo-->
-        <div class="up-navigation">
-            <div class="logo">
-                <img src="../assets/logo.png" />
-                EPIC Mail
+
+<head>
+    <meta charset="UTF-8">
+    <title>Draft - EPIC Mail</title>
+    <meta name="description" content="List of all mails">
+    <meta name="viewport" content="width=device-width;initial=1.0;">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/icons.css">
+    <link rel="stylesheet" href="../css/mail.css">
+</head>
+
+<body>
+    <!-- Adding the top navigation that contains the logo-->
+    <div class="up-navigation">
+        <div class="logo">
+            <img src="../assets/logo.png" />
+            EPIC Mail
+        </div>
+        <div class="search">
+            <input name="search" placeholder="Search mail">
+        </div>
+        <div class="logout">
+            <a href="login.html">Logout</a>
+        </div>
+    </div>
+    <!-- Contains the navigation and the main mails container-->
+    <div class="content">
+        <div class="navigation">
+            <div>
+                <a href="send.html" class="compose-button">Compose</a>
             </div>
-            <div class="search">
-                <input name="search" placeholder="Search mail">
+            <ul class="nav">
+                <a href="dashboard.html">
+                    <li><span class="fa fa-envelope"> </span>Inbox</li>
+                </a>
+                <a href="draft.html">
+                    <li><span class="fa fa-file"> </span>Draft</li>
+                </a>
+                <a href="sent-mail.html">
+                    <li><span class="fa fa-paper-plane"> </span>Sent Items</li>
+                </a>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="main-nav">
+                <div class="nav-item">
+                    <span class="fa fa-envelope"> </span>
+                    Inbox
+                </div>
+                <div class="nav-item">
+                    <span class="fa fa-file"> </span>
+                    Draft
+                </div>
+                <div class="nav-item">
+                    <span class="fa fa-paper-plane"> </span>
+                    Sent Items
+                </div>
+            </div>
+
+            <!-- Beginnig of readding mail-->
+            <!-- Mail actions-->
+            <div class="mail-toolbar">
+                <a href="#" class="btn"><span class="fa fa-trash"> </span>Delete</a>
+                <a href="#" class="btn"><span class="fa fa-envelope"> </span>Send</a>
+                <a href="#" class="btn"><span class="fa fa-arrow-right"> </span>Forward</a>
+            </div>
+            <!-- Mail actions end-->
+            <!-- Mail Display-->
+            <div class="mailview">
+                <div class="mailview-title">Stay connected with epic mail</div>
+                <div class="mailview-from"><b>EPIC Mail</b> no-reply@epicmail.com</div>
+                <div class="mainview-mail">
+                    <h1>Welcome to EPIC Mail</h1>
+                    <p>
+                        This is email to mail to welcome you on the epic mail
+                    </p>
+                </div>
+            </div>
+            <!-- Mail Relpying-->
+            <div class="mailview-reply">
+                <form action="">
+                    <textarea></textarea>
+                    <button>Relpy</button>
+                </form>
             </div>
         </div>
-        <!-- Contains the navigation and the main mails container-->
-        <div class="content">
-            <div class="navigation">
-                <div>
-                    <a href="send.html" class="compose-button">Compose</a>
-                </div>
-                <ul class="nav">
-                    <a href=""><li><span class="fa fa-envelope"> </span>Inbox</li></a>
-                    <a href=""><li><span class="fa fa-file"> </span>Draft</li></a>
-                    <a href=""><li><span class="fa fa-paper-plane"> </span>Sent Items</li></a>
-                </ul>
-            </div>
-            <div class="main">
-                <div class="main-nav">
-                    <div class="nav-item">
-                        <span class="fa fa-envelope"> </span>
-                        Inbox
-                    </div>
-                    <div class="nav-item">
-                        <span class="fa fa-file"> </span>
-                        Draft
-                    </div>
-                    <div class="nav-item">
-                            <span class="fa fa-paper-plane"> </span>
-                        Sent Items
-                    </div>
-                </div>
-                
-                <!-- Beginnig of readding mail-->
-                <!-- Mail actions-->
-                <div class="mail-toolbar">
-                    <a href="#" class="btn"><span class="fa fa-trash"> </span>Delete</a>
-                    <a href="#" class="btn"><span class="fa fa-envelope"> </span>Send</a>
-                    <a href="#" class="btn"><span class="fa fa-arrow-right"> </span>Forward</a>
-                </div>
-                <!-- Mail actions end-->
-                <!-- Mail Display-->
-                <div class="mailview">
-                    <div class="mailview-title">Stay connected with epic mail</div>
-                    <div class="mailview-from"><b>EPIC Mail</b> no-reply@epicmail.com</div>
-                    <div class="mainview-mail">
-                        <h1>Welcome to EPIC Mail</h1>
-                        <p>
-                            This is email to mail to welcome you on the epic mail
-                        </p>
-                    </div>
-                </div>
-                <!-- Mail Relpying-->
-                <div class="mailview-reply">
-                    <form action="">
-                        <textarea></textarea>
-                        <button>Relpy</button>
-                    </form>
-                </div>
-            </div>
-            <div class="group">
-                .
-            </div>
+        <!-- Showing the list of group-->
+        <div class="group">
+            <form>
+                <input type="text" min="4" name="groupname" placeholder="Group name">
+            </form>
+            <ul>
+                <li>
+                    <div>Alpha</div><a href="#">X</a>
+                </li>
+                <li>
+                    <div>Beta</div><a href="#">X</a>
+                </li>
+                <li>
+                    <div>Char</div><a href="#">X</a>
+                </li>
+                <li>
+                    <div>Delta</div><a href="#">X</a>
+                </li>
+            </ul>
         </div>
-    </body>
+    </div>
+</body>
+
 </html>
