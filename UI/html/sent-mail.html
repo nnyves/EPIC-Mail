@@ -1,118 +1,161 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Sent Mail - EPIC Mail</title>
-        <meta name="description" content="List of all mails">
-        <meta name="viewport" content="width=device-width;initial=1.0;">
-        <link rel="stylesheet" href="../css/main.css">
-        <link rel="stylesheet" href="../css/style.css">
-        <link rel="stylesheet" href="../css/icons.css">
-    </head>
-    <body>
-        <!-- Adding the top navigation that contains the logo-->
-        <div class="up-navigation">
-            <div class="logo">
-                <img src="../assets/logo.png" />
-                EPIC Mail
-            </div>
-            <div class="search">
-                <input name="search" placeholder="Search mail">
-            </div>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sent Mail - EPIC Mail</title>
+    <meta name="description" content="List of all mails">
+    <meta name="viewport" content="width=device-width;initial=1.0;">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/icons.css">
+</head>
+
+<body>
+    <!-- Adding the top navigation that contains the logo-->
+    <div class="up-navigation">
+        <div class="logo">
+            <img src="../assets/logo.png" />
+            EPIC Mail
         </div>
-        <!-- Contains the navigation and the main mails container-->
-        <div class="content">
-            <div class="navigation">
-                <div>
-                    <a href="send.html" class="compose-button">Compose</a>
-                </div>
-                <ul class="nav">
-                    <a href=""><li><span class="fa fa-envelope"> </span>Inbox</li></a>
-                    <a href=""><li><span class="fa fa-file"> </span>Draft</li></a>
-                    <a href="" class="selected"><li><span class="fa fa-paper-plane"> </span>Sent Items</li></a>
-                </ul>
+        <div class="search">
+            <input name="search" placeholder="Search mail">
+        </div>
+        <div class="logout">
+            <a href="login.html">Logout</a>
+        </div>
+    </div>
+    <!-- Contains the navigation and the main mails container-->
+    <div class="content">
+        <div class="navigation">
+            <div>
+                <a href="send.html" class="compose-button">Compose</a>
             </div>
-            <div class="main">
-                <div class="main-nav">
+            <ul class="nav">
+                <a href="dashboard.html">
+                    <li><span class="fa fa-envelope"> </span>Inbox</li>
+                </a>
+                <a href="draft.html">
+                    <li><span class="fa fa-file"> </span>Draft</li>
+                </a>
+                <a href="sent-mail.html" class="selected">
+                    <li><span class="fa fa-paper-plane"> </span>Sent Items</li>
+                </a>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="main-nav">
+                <a href="dashboard.html" class="link">
                     <div class="nav-item">
                         <span class="fa fa-envelope"> </span>
                         Inbox
                     </div>
+                </a>
+                <a href="draft.html" class="link">
                     <div class="nav-item">
                         <span class="fa fa-file"> </span>
                         Draft
                     </div>
+                </a>
+                <a href="send.html" class="link">
                     <div class="nav-item selected">
-                            <span class="fa fa-paper-plane"> </span>
+                        <span class="fa fa-paper-plane"> </span>
                         Sent Items
                     </div>
-                </div>
-                <!-- Beginning of the mailing list-->
-                <!-- Single Mail-->
-                <div class="mail-item">
+                </a>
+            </div>
+            <!-- Beginning of the mailing list-->
+            <!-- Single Mail-->
+            <a href="sented-mail.html" class="link">
+                <div class="mail-item read">
                     <div class="checkbox">
                         <input type="checkbox">
                     </div>
                     <div class="mail-title">
                         <span class="fa fa-envelope"> </span>
-                        EPIC Mail 
+                        EPIC Mail
                     </div>
                     <div class="mail-details">
                         <b>Stay connected with EPIC Mail</b>
                         Stay connected with EPIC Mail by subscribing to our news letter
                     </div>
                 </div>
-                <!-- End Single Mail-->
-                <!-- Single Mail-->
-                <div class="mail-item">
-                        <div class="checkbox">
-                            <input type="checkbox">
-                        </div>
-                        <div class="mail-title">
-                            <span class="fa fa-envelope"> </span>
-                            EPIC Mail 
-                        </div>
-                        <div class="mail-details">
-                            <b>Stay connected with EPIC Mail</b>
-                            Stay connected with EPIC Mail by subscribing to our news letter
-                        </div>
+            </a>
+            <!-- End Single Mail-->
+            <!-- Single Mail-->
+            <a href="sented-mail.html" class="link">
+                <div class="mail-item read">
+                    <div class="checkbox">
+                        <input type="checkbox">
                     </div>
-                    <!-- End Single Mail-->
-                    <!-- Single Mail-->
-                <div class="mail-item">
-                        <div class="checkbox">
-                            <input type="checkbox">
-                        </div>
-                        <div class="mail-title">
-                            <span class="fa fa-envelope"> </span>
-                            EPIC Mail 
-                        </div>
-                        <div class="mail-details">
-                            <b>Stay connected with EPIC Mail</b>
-                            Stay connected with EPIC Mail by subscribing to our news letter
-                        </div>
+                    <div class="mail-title">
+                        <span class="fa fa-envelope"> </span>
+                        EPIC Mail
                     </div>
-                    <!-- End Single Mail-->
-                    <!-- Single Mail-->
-                <div class="mail-item">
-                        <div class="checkbox">
-                            <input type="checkbox">
-                        </div>
-                        <div class="mail-title">
-                            <span class="fa fa-envelope"> </span>
-                            EPIC Mail 
-                        </div>
-                        <div class="mail-details">
-                            <b>Stay connected with EPIC Mail</b>
-                            Stay connected with EPIC Mail by subscribing to our news letter
-                        </div>
+                    <div class="mail-details">
+                        <b>Stay connected with EPIC Mail</b>
+                        Stay connected with EPIC Mail by subscribing to our news letter
                     </div>
-                    <!-- End Single Mail-->
-                <!-- Beginning of the mailing list-->
-            </div>
-            <div class="group">
-                .
-            </div>
+                </div>
+            </a>
+            <!-- End Single Mail-->
+            <!-- Single Mail-->
+            <a href="sented-mail.html" class="link">
+                <div class="mail-item read">
+                    <div class="checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="mail-title">
+                        <span class="fa fa-envelope"> </span>
+                        EPIC Mail
+                    </div>
+                    <div class="mail-details">
+                        <b>Stay connected with EPIC Mail</b>
+                        Stay connected with EPIC Mail by subscribing to our news letter
+                    </div>
+                </div>
+            </a>
+            <!-- End Single Mail-->
+            <!-- Single Mail-->
+            <a href="sented-mail.html" class="link">
+                <div class="mail-item read">
+                    <div class="checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="mail-title">
+                        <span class="fa fa-envelope"> </span>
+                        EPIC Mail
+                    </div>
+                    <div class="mail-details">
+                        <b>Stay connected with EPIC Mail</b>
+                        Stay connected with EPIC Mail by subscribing to our news letter
+                    </div>
+                </div>
+            </a>
+            <!-- End Single Mail-->
+            <!-- Beginning of the mailing list-->
         </div>
-    </body>
+        <!-- Showing the list of group-->
+        <div class="group">
+            <form>
+                <input type="text" min="4" name="groupname" placeholder="Group name">
+            </form>
+            <ul>
+                <li>
+                    <div>Alpha</div><a href="#">X</a>
+                </li>
+                <li>
+                    <div>Beta</div><a href="#">X</a>
+                </li>
+                <li>
+                    <div>Char</div><a href="#">X</a>
+                </li>
+                <li>
+                    <div>Delta</div><a href="#">X</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+
 </html>
