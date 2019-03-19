@@ -5,7 +5,8 @@ import app from '../app';
 chai.use(chaiHttp);
 const should = chai.should();
 describe('Authentication checker', () => {
-  it('Should not authincate if he does not provide token', (done) => {
+  // Checking if the API exists 
+  it('Should not authenticate if he does not provide token', (done) => {
     chai.request(app)
       .post('/api/v1/messages/')
       .end((error, result) => {
@@ -14,7 +15,8 @@ describe('Authentication checker', () => {
         done();
       });
   });
-  it('Should not authincate if he provide invalid token', (done) => {
+  // Checking if it accept invalid token
+  it('Should not authenticate if he provide invalid token', (done) => {
     chai.request(app)
       .post('/api/v1/messages/')
       .set('token','invalid-token')
@@ -24,7 +26,8 @@ describe('Authentication checker', () => {
         done();
       });
   });
-  it('Should authincate if provided valid token', (done) => {
+  // Checking if the right token can  authenticate
+  it('Should authenticate if provided valid token', (done) => {
     chai.request(app)
       .post('/api/v1/messages/')
       .set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTUyNTY1ODc1fQ.In5qfM-yH8P5DSF7fRh63oswK98bpiOZqPmP_WLg8w4')

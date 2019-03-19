@@ -1,6 +1,7 @@
 import express from 'express';
 import MessageController from '../controllers/message.controller';
 
+// Route for the prefix messages which will control whole message features 
 const route = express.Router();
 route.post('/', MessageController.create);
 route.get('/', MessageController.inbox);

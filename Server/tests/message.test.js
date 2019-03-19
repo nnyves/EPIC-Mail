@@ -5,6 +5,7 @@ import app from '../app';
 chai.use(chaiHttp);
 const should = chai.should();
 describe('Message Creation', () => {
+  // Checking if creation of messages require authentication
     it('Should not create message if not authenticated', (done) => {
       chai.request(app)
         .post('/api/v1/messages/')
@@ -14,6 +15,7 @@ describe('Message Creation', () => {
           done();
         });
     });
+    // Checking if invalid information does not work
     it('Should validate information', (done) => {
       chai.request(app)
         .post('/api/v1/messages/')
@@ -26,7 +28,8 @@ describe('Message Creation', () => {
           done();
         });
     });
-    it('Should send message if all require meet', (done) => {
+    // Checking that right information can be allowed
+    it('Should send message if all requirements meet', (done) => {
       chai.request(app)
         .post('/api/v1/messages/')
         .set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwiaWF0IjoxNTUyODk5MzkwfQ.6XlR857ypV-lPbFRQt_pIYSESEZciSOeOUyiJ8rMlvM')
@@ -37,6 +40,7 @@ describe('Message Creation', () => {
           done();
         });
     });
+    // Checking if the message was returned
     it('Should return a message object when send message', (done) => {
       chai.request(app)
         .post('/api/v1/messages/')
@@ -56,6 +60,7 @@ describe('Message Creation', () => {
   });
 
 describe('Reading inbox', () => {
+  // Checking if it require authentication
   it('Should not read message if not authenticated', (done) => {
     chai.request(app)
       .get('/api/v1/messages/')
@@ -65,7 +70,8 @@ describe('Reading inbox', () => {
         done();
       });
   });
-  it('Should send message if all require meet', (done) => {
+  // Checking if it could get some messages
+  it('Should get message if all requirements meet', (done) => {
     chai.request(app)
       .get('/api/v1/messages/')
       .set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwiaWF0IjoxNTUyODk5MzkwfQ.6XlR857ypV-lPbFRQt_pIYSESEZciSOeOUyiJ8rMlvM')
@@ -84,6 +90,7 @@ describe('Reading inbox', () => {
         done();
       });
   });
+  // Checking if the message have the right format
   it('Should return a message object', (done) => {
     chai.request(app)
       .get('/api/v1/messages/')
@@ -101,6 +108,7 @@ describe('Reading inbox', () => {
 });
 
 describe('Reading unread', () => {
+  // Checking if the message require authentication
   it('Should not read message if not authenticated', (done) => {
     chai.request(app)
       .get('/api/v1/messages/unread')
@@ -110,7 +118,8 @@ describe('Reading unread', () => {
         done();
       });
   });
-  it('Should send message if all require meet', (done) => {
+  // If you can get the requested messages
+  it('Should get message if all requirements meet', (done) => {
     chai.request(app)
       .get('/api/v1/messages/unread')
       .set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwiaWF0IjoxNTUyODk5MzkwfQ.6XlR857ypV-lPbFRQt_pIYSESEZciSOeOUyiJ8rMlvM')
@@ -154,7 +163,8 @@ describe('Reading draft', () => {
         done();
       });
   });
-  it('Should send message if all require meet', (done) => {
+  // If you can get the requested messages
+  it('Should send message if all requirements meet', (done) => {
     chai.request(app)
       .get('/api/v1/messages/draft')
       .set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwiaWF0IjoxNTUyODk5MzkwfQ.6XlR857ypV-lPbFRQt_pIYSESEZciSOeOUyiJ8rMlvM')
@@ -198,7 +208,8 @@ describe('Deteting message', () => {
         done();
       });
   });
-  it('Should delete message if all require meet', (done) => {
+  // Checking if the messages can be deleted
+  it('Should delete message if all requirements meet', (done) => {
     chai.request(app)
       .delete('/api/v1/messages/1')
       .set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwiaWF0IjoxNTUyODk5MzkwfQ.6XlR857ypV-lPbFRQt_pIYSESEZciSOeOUyiJ8rMlvM')
@@ -207,6 +218,7 @@ describe('Deteting message', () => {
         done();
       });
   });
+  // Checking if it can know that the message was deleted or not
   it('Should not delete message which does not exist', (done) => {
     chai.request(app)
       .delete('/api/v1/messages/3')
@@ -226,7 +238,7 @@ describe('Deteting message', () => {
           done();
         });
     });
-    it('Should send message if all require meet', (done) => {
+    it('Should send message if all requirements meet', (done) => {
       chai.request(app)
         .get('/api/v1/messages/sent')
         .set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwiaWF0IjoxNTUyODk5MzkwfQ.6XlR857ypV-lPbFRQt_pIYSESEZciSOeOUyiJ8rMlvM')
@@ -270,7 +282,7 @@ describe('Deteting message', () => {
           done();
         });
     });
-    it('Should get message if all require meet', (done) => {
+    it('Should get message if all requirements meet', (done) => {
       chai.request(app)
         .get('/api/v1/messages/0')
         .set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwiaWF0IjoxNTUyODk5MzkwfQ.6XlR857ypV-lPbFRQt_pIYSESEZciSOeOUyiJ8rMlvM')

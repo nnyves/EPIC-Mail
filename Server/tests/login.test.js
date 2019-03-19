@@ -5,6 +5,7 @@ import app from '../app';
 chai.use(chaiHttp);
 let should = chai.should();
 describe('Login', () => {
+  // Checking if the API works
   it('It should be an object', (done) => {
     chai.request(app)
       .post('/api/v1/auth/login')
@@ -23,6 +24,7 @@ describe('Login', () => {
         done();
       });
   });
+  // Checking if the wrong email ./ password will not works
   it('It should not login (Invalid password)',(done) => {
     chai.request(app)
       .post('/api/v1/auth/login')
@@ -53,6 +55,7 @@ describe('Login', () => {
         done();
       });
   });
+  // Checking if the right information can login
   it('It should login',(done) => {
     chai.request(app)
       .post('/api/v1/auth/login')
@@ -63,6 +66,7 @@ describe('Login', () => {
         done();
       });
   });
+  // Checking if when you login you get the token to be used in the future activity
   it('It should have token',(done) => {
     chai.request(app)
       .post('/api/v1/auth/login')

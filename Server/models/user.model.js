@@ -8,6 +8,7 @@ class User {
     this.user = _user;
   }
   
+  /* Getting the user when you have id */
   static findByIdn(_id) {
     let result = null;
     usersTable.forEach((user) => {
@@ -19,6 +20,7 @@ class User {
     return result;
   }
 
+  /* Getting the user when you have the email */
   static findByEmail(_email) {
     let result = null;
     usersTable.forEach((user) => {
@@ -34,11 +36,13 @@ class User {
     return this.user;
   }
 
+  /* Saving the new user */
   save() {
     this.user.id = usersTable.length;
     usersTable.push(this.user);
   }
 
+  /* Checking for validation */
   validate() {
     const {
       email, firstName, lastName, password,
@@ -63,6 +67,7 @@ class User {
     return errors;
   }
 
+  /* Getting the id of the user */
   getId() {
     let result = null;
     usersTable.forEach((user) => {
@@ -74,6 +79,7 @@ class User {
     return result;
   }
 
+  /* Finding the messages in inbox by the user of relationship */
   inbox () {
     const result = [];
     inboxTable.filter((value) => {
@@ -84,6 +90,7 @@ class User {
     return result;
   }
 
+  /* Finding the messages which is unread */
   unread() {
     const result = [];
     inboxTable.filter((value) => {
@@ -97,6 +104,7 @@ class User {
     return result;
   }
 
+  /* Finding the messages which is drafted */
   draft() {
     const result = [];
     sentTable.filter((value) => {
@@ -110,6 +118,7 @@ class User {
     return result;
   }
 
+  /* Finding the messages that was sent */
   sentMail() {
     const result = [];
     sentTable.filter((value) => {
