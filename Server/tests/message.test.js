@@ -29,7 +29,7 @@ describe('Message Creation', () => {
         });
     });
     // Checking that right information can be allowed
-    it('Should send message if all require meet', (done) => {
+    it('Should send message if all requirements meet', (done) => {
       chai.request(app)
         .post('/api/v1/messages/')
         .set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwiaWF0IjoxNTUyODk5MzkwfQ.6XlR857ypV-lPbFRQt_pIYSESEZciSOeOUyiJ8rMlvM')
@@ -71,7 +71,7 @@ describe('Reading inbox', () => {
       });
   });
   // Checking if it could get some messages
-  it('Should get message if all require meet', (done) => {
+  it('Should get message if all requirements meet', (done) => {
     chai.request(app)
       .get('/api/v1/messages/')
       .set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwiaWF0IjoxNTUyODk5MzkwfQ.6XlR857ypV-lPbFRQt_pIYSESEZciSOeOUyiJ8rMlvM')
@@ -119,7 +119,7 @@ describe('Reading unread', () => {
       });
   });
   // If you can get the requested messages
-  it('Should get message if all require meet', (done) => {
+  it('Should get message if all requirements meet', (done) => {
     chai.request(app)
       .get('/api/v1/messages/unread')
       .set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwiaWF0IjoxNTUyODk5MzkwfQ.6XlR857ypV-lPbFRQt_pIYSESEZciSOeOUyiJ8rMlvM')
@@ -164,7 +164,7 @@ describe('Reading draft', () => {
       });
   });
   // If you can get the requested messages
-  it('Should send message if all require meet', (done) => {
+  it('Should send message if all requirements meet', (done) => {
     chai.request(app)
       .get('/api/v1/messages/draft')
       .set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwiaWF0IjoxNTUyODk5MzkwfQ.6XlR857ypV-lPbFRQt_pIYSESEZciSOeOUyiJ8rMlvM')
@@ -209,7 +209,7 @@ describe('Deteting message', () => {
       });
   });
   // Checking if the messages can be deleted
-  it('Should delete message if all require meet', (done) => {
+  it('Should delete message if all requirements meet', (done) => {
     chai.request(app)
       .delete('/api/v1/messages/1')
       .set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwiaWF0IjoxNTUyODk5MzkwfQ.6XlR857ypV-lPbFRQt_pIYSESEZciSOeOUyiJ8rMlvM')
@@ -238,7 +238,7 @@ describe('Deteting message', () => {
           done();
         });
     });
-    it('Should send message if all require meet', (done) => {
+    it('Should send message if all requirements meet', (done) => {
       chai.request(app)
         .get('/api/v1/messages/sent')
         .set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwiaWF0IjoxNTUyODk5MzkwfQ.6XlR857ypV-lPbFRQt_pIYSESEZciSOeOUyiJ8rMlvM')
@@ -282,7 +282,7 @@ describe('Deteting message', () => {
           done();
         });
     });
-    it('Should get message if all require meet', (done) => {
+    it('Should get message if all requirements meet', (done) => {
       chai.request(app)
         .get('/api/v1/messages/0')
         .set('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MCwiaWF0IjoxNTUyODk5MzkwfQ.6XlR857ypV-lPbFRQt_pIYSESEZciSOeOUyiJ8rMlvM')

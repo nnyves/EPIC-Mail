@@ -1,5 +1,5 @@
 # EPIC Mail
-This is a email project to help peoples to exchange email 
+This is a email project to help people to exchange email 
 ## Features
 * Users can sign up
 * Users can login
@@ -23,7 +23,7 @@ This is a email project to help peoples to exchange email
 * ```npm test```
 
 ## API Documentation
-This document describes the Freenom API at a technical level. It explains the supported data formats and how to interact with the API. 
+This document describes the EPIC-Mail API at a technical level. It explains the supported data formats and how to interact with the API. 
 
 ### Response
 #### Response Code
