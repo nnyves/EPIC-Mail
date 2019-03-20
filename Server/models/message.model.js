@@ -110,13 +110,13 @@ class Message {
     sentTable.filter((value) => {
       if (value.messageId == messageId) {
         let index = sentTable.indexOf(value);
-        inboxTable.splice(index,1);
+        sentTable.splice(index,1);
       }
     });
     messageTable.filter((value) => {
       if (value.id == messageId) {
         let index = messageTable.indexOf(value);
-        inboxTable.splice(index,1);
+        messageTable.splice(index,1);
       }
     });
   }
