@@ -46,5 +46,35 @@ class GroupController {
       });
     }
   }
+
+  static async rename(request, response) {
+    try{
+      let errors = Group.validate(request.body);
+      if (errors.length > 0) {
+        return response.send({
+          status: 406,
+          errors,
+        });
+      }
+      const { rows } = await connection.query('UPDATE groups SET name = $1 WHERE id=$2 RETURNING *', [request.body.groupName, request.params.group_id]);
+      if (rows.length > 0) {
+        response.send({
+          status: 200,
+          data: rows,
+        });
+      } else {
+        response.send({
+            status: 406,
+            error: ['Id not found'],
+          });
+      }
+    } catch(err) {
+      console.log(err);
+      response.send({
+        status: 500,
+        error: ['Internal Error'],
+      });
+    }
+  }
 }
 export default GroupController;
