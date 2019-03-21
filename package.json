@@ -6,7 +6,8 @@
   "scripts": {
     "test": "nyc --reporter=text mocha --exit --require babel-register Server/tests/*.test.js",
     "dev": "nodemon --exec babel-node Server/app.js",
-    "start": "babel-node Server/app.js"
+    "start": "babel-node Server/app.js",
+    "setup": "babel-node Server/database/table.sql.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
     "body-parser": "^1.18.3",
     "chai": "^4.2.0",
     "chai-http": "^4.2.1",
+    "dotenv": "^7.0.0",
     "eslint": "^5.15.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
@@ -34,6 +36,7 @@
     "jsonwebtoken": "^8.5.0",
     "mocha": "^6.0.2",
     "nodemon": "^1.18.10",
-    "nyc": "^13.3.0"
+    "nyc": "^13.3.0",
+    "pg": "^7.9.0"
   }
 }
