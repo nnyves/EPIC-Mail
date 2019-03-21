@@ -2,7 +2,7 @@ import connection from '../database/connection';
 
 class groupMember {
   static async save(groupmember) {
-    const { rows } = await connection.query('INSERT INTO groupMembers(groupid,memberid) VALUES($1,$2) RETURNING *', [groupmember.groupid, groupmember.memberid]);
+    const { rows } = await connection.query('INSERT INTO groupMembers(groupid,memberid,role) VALUES($1,$2,$3) RETURNING *', [groupmember.groupid, groupmember.memberid, groupmember.role]);
     return rows;
   }
 

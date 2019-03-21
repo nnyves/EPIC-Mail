@@ -13,6 +13,12 @@ class GroupController {
         });
       }
       const data = await Group.save(request.body);
+      const admin = {
+        memberid: request.user.id,
+        groupid: data[0].id,
+        role: 'admin',
+      }
+      await GroupMember.save(admin);
       response.send({
         status: 200,
         data,
@@ -24,6 +30,7 @@ class GroupController {
           error: ['Group name already exists'],
         });
       } else {
+        console.log(err);
         response.send({
           status: 500,
           error: ['Internal Error'],
@@ -106,7 +113,8 @@ class GroupController {
       const memberid = request.body.userId;
       const groupid = request.params.group_id;
       console.log({ memberid, groupid });
-      const data = await GroupMember.save({ memberid, groupid });
+      const role = 'chat';
+      const data = await GroupMember.save({ memberid, groupid, role });
       if (data.length > 0) {
         response.send({
           status: 200,
