@@ -29,37 +29,35 @@ class Message {
   async save() {
     const { subject, email, message, senderId } = this.message;
     const status = this.message.status || 'sent';
-    const recieverId = await User.findByEmail(email).id;
+    const data = await User.findByEmail(email);
+    const recieverId = data.id;
 
     const rollBack = () => {connection.query('ROLLBACK',(err) => console.log(err)); console.log('ROLLED BACK') }
     await connection.query('BEGIN');
-    let messageId = null;
-    let done = null;
-    await connection.query('INSERT INTO messages(subject,message,status) VALUES($1,$2,$3) RETURNING *;',[subject, message, status],async (err, data) => {
-      done = 1;  
-      if (err) {
+    const { rows } = await connection.query('INSERT INTO messages(subject,message,status) VALUES($1,$2,$3) RETURNING *;',[subject, message, status]);
+    let msg = null;
+    if (rows.length > 0) {
+      msg = rows[0];
+      const messageId = msg.id;
+      await connection.query('INSERT INTO inbox(messageId,receiverId) VALUES($1,$2);',[messageId, recieverId],async (err, data) => {
+        if (err) {
             console.log(err);
             rollBack();
         } else {
-            messageId = data.rows[0].id;
-            await connection.query('INSERT INTO inbox(messageId,receiverId) VALUES($1,$2);',[messageId, recieverId],async (err, data) => {
+            await connection.query('INSERT INTO sent(messageId,senderId) VALUES($1,$2);',[messageId, senderId],(err, data) => {
                 if (err) {
                     console.log(err);
                     rollBack();
                 } else {
-                    await connection.query('INSERT INTO sent(messageId,senderId) VALUES($1,$2);',[messageId, senderId],(err, data) => {
-                        if (err) {
-                            console.log(err);
-                            rollBack();
-                        } else {
-                            connection.query('COMMIT');
-                        }
-                    });
+                    connection.query('COMMIT');
                 }
             });
         }
     });
-    return await Message.findById(messageId);
+    } else {
+      rollBack();
+    }
+    return msg;
   }
 
   format() {
