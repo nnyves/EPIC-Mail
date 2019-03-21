@@ -4,6 +4,7 @@ import tokenizer from '../helpers/tokenizer.helper';
 class UserController {
   /* Controller to login */
   static async login(request, response) {
+    try{
     // Getting user data 
     const { email, password } = request.body;
     // Finding the user
@@ -15,11 +16,14 @@ class UserController {
       response.send({ status: 200, data: { token } });
     } else {
       response.send({ status: 406 , error : ['Incorrect username or password'] });
+    } } catch (err) {
+      response.send({ status: 500, errors: ['Internal Error'] });
     }
   }
 
   /* Controller to register the user */
   static async register(request, response) {
+    try{
     const user = new User(request.body);
     // Validating the user
     const errors = await user.validate();
@@ -29,6 +33,8 @@ class UserController {
       response.send({ status: 200, data: [{ token }] });
     } else {
       response.send({ status: 406, errors });
+    } } catch (err) {
+      response.send({ status: 500, errors: ['Internal Error'] });
     }
   }
 }
