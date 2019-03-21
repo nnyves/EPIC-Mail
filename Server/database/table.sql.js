@@ -5,7 +5,7 @@ const usersTable = `CREATE TABLE IF NOT EXISTS Users(
     email VARCHAR(50) NOT NULL UNIQUE,
     firstName VARCHAR(50),
     lastName VARCHAR(50),
-    password VARCHAR(50) NOT NULL
+    password VARCHAR(100) NOT NULL
 );`;
 
 const messagesTable = `CREATE TABLE IF NOT EXISTS messages(

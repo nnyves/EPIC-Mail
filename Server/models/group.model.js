@@ -16,5 +16,10 @@ class Group {
     const { rows } = await connection.query('SELECT * FROM groups');
     return rows;
   }
+
+  static async delete(id) {
+    const { rows }  = await connection.query('DELETE FROM groups WHERE id=$1 RETURNING *', [id]);
+    return rows;
+  }
 }
 export default Group;
