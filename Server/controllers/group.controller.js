@@ -1,4 +1,5 @@
 import Group from '../models/group.model';
+import connection from '../database/connection';
 
 class GroupController {
   static async create(request, response) {
@@ -27,6 +28,22 @@ class GroupController {
           error: ['Internal Error'],
         });
       }
+    }
+  }
+
+  static async all(request, response) {
+    try{
+      const data = await Group.getAll();
+      response.send(
+        {
+          status: 200,
+          data
+        }
+      ); } catch(err) {
+      response.send({
+        status: 500,
+        error: ['Internal Error'],
+      });
     }
   }
 }

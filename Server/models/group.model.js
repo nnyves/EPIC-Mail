@@ -11,5 +11,10 @@ class Group {
     const { rows } = await connection.query('INSERT INTO groups(name) VALUES($1) RETURNING *;', [groupName]);
     return rows;
   }
+
+  static async getAll() {
+    const { rows } = await connection.query('SELECT * FROM groups');
+    return rows;
+  }
 }
 export default Group;
