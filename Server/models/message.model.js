@@ -3,13 +3,14 @@ import inboxTable from '../tables/inbox.table';
 import messageTable from '../tables/message.table';
 import User from './user.model';
 import usersTable from '../tables/users.table';
+import connection from '../database/connection';
 
 class Message {
   constructor(_message) {
     this.message = _message;
   }
 
-  validate() {
+  async validate() {
     const errors = [];
     const { subject, message, email } = this.message;
     if (!subject || !subject.match('^.+')) {
@@ -18,43 +19,47 @@ class Message {
     if (!message) {
       errors.push('No message');
     }
-    if (!email || !User.findByEmail(email)) {
+    if (!email || ! await User.findByEmail(email)) {
       errors.push('Email does not exist in the system');
     }
     this.errors = errors;
     return errors;
   }
 
-  save() {
-    const id = messageTable.length;
+  async save() {
     const { subject, email, message, senderId } = this.message;
-    const parentMessageId = 0;
-    const createdOn = new Date();
     const status = this.message.status || 'sent';
-    const msg = {
-      subject,
-      message,
-      id,
-      createdOn,
-      parentMessageId,
-      status,
-    };
-    messageTable.push(msg);
-    const recieverId = User.findByEmail(email).id;
-    const sent = {
-      senderId,
-      messageId: id,
-    }
-    const reciever = {
-      recieverId,
-      messageId: id,
-    };
-    sentTable.push(sent);
-    if (status != 'draft') {
-      inboxTable.push(reciever);
-    }
-    messageTable.push(msg);
-    return msg;
+    const recieverId = await User.findByEmail(email).id;
+
+    const rollBack = () => {connection.query('ROLLBACK',(err) => console.log(err)); console.log('ROLLED BACK') }
+    await connection.query('BEGIN');
+    let messageId = null;
+    let done = null;
+    await connection.query('INSERT INTO messages(subject,message,status) VALUES($1,$2,$3) RETURNING *;',[subject, message, status],async (err, data) => {
+      done = 1;  
+      if (err) {
+            console.log(err);
+            rollBack();
+        } else {
+            messageId = data.rows[0].id;
+            await connection.query('INSERT INTO inbox(messageId,receiverId) VALUES($1,$2);',[messageId, recieverId],async (err, data) => {
+                if (err) {
+                    console.log(err);
+                    rollBack();
+                } else {
+                    await connection.query('INSERT INTO sent(messageId,senderId) VALUES($1,$2);',[messageId, senderId],(err, data) => {
+                        if (err) {
+                            console.log(err);
+                            rollBack();
+                        } else {
+                            connection.query('COMMIT');
+                        }
+                    });
+                }
+            });
+        }
+    });
+    return await Message.findById(messageId);
   }
 
   format() {
@@ -63,62 +68,42 @@ class Message {
     return msg;
   }
 
-  getSender() {
-    let result = null;
-    sentTable.forEach((msg) => {
-      const { messageId } = msg;
-      if (messageId === this.message.id) {
-        result = msg.senderId;
-      }
-    });
-    return result;
+  async getSender() {
+    const { rows } = await connection.query('SELECT * FROM sent WHERE messageid = $1',[this.message.id]);
+    if (rows.length > 0) {
+      return rows[0].senderId;
+    }
+    return null;
   }
 
-  getReveiver() {
-    let result = null;
-    inboxTable.forEach((msg) => {
-      const { messageId } = msg;
-      if (messageId === this.message.id) {
-        result = msg.recieverId;
-      }
-    });
-    return result;
+  async getReveiver() {
+    const { rows } = await connection.query('SELECT * FROM inbox WHERE messageid = $1',[this.message.id]);
+    if (rows.length > 0) {
+      return rows[0].receiverId;
+    }
+    return null;
   }
 
-  static findById(_id) {
-    let result = null;
-    messageTable.forEach((user) => {
-      const { id } = user;
-      if (id === parseInt(_id)) {
-        result = user;
-      }
-    });
-    return result;
+  static async findById(_id) {
+    const { rows } = await connection.query('SELECT * FROM messages LEFT JOIN sent ON sent.messageid = id LEFT JOIN inbox ON inbox.messageid = id WHERE id = $1 ',[_id]);
+    if (rows.length > 0) {
+      return rows[0];
+    }
+    return null;
   }
 
-  setRead() {
-    this.message.status = 'read';
+  async setRead() {
+    await connection.query('UPDATE messages SET status = $1 WHERE id = $2 ',['read',this.message.id]);
   }
 
-  static delete(messageId) {
-    inboxTable.filter((value) => {
-      if (value.messageId == messageId) {
-        let index = inboxTable.indexOf(value);
-        inboxTable.splice(index,1);
-      }
-    });
-    sentTable.filter((value) => {
-      if (value.messageId == messageId) {
-        let index = sentTable.indexOf(value);
-        sentTable.splice(index,1);
-      }
-    });
-    messageTable.filter((value) => {
-      if (value.id == messageId) {
-        let index = messageTable.indexOf(value);
-        messageTable.splice(index,1);
-      }
-    });
+  static async delete(messageId) {
+    const result = await connection.query('DELETE FROM inbox WHERE messageid = $1', [ messageId ]);
+    const result2 =await connection.query('DELETE FROM sent WHERE messageid = $1', [ messageId ]);
+    const result3 =await connection.query('DELETE FROM messages WHERE id = $1', [ messageId ]);
+    console.log(result.rowCount);
+    console.log(result2.rowCount);
+    console.log(result3.rowCount);
+    console.log(messageId);
   }
 }
 

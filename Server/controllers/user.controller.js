@@ -3,29 +3,29 @@ import tokenizer from '../helpers/tokenizer.helper';
 
 class UserController {
   /* Controller to login */
-  static login(request, response) {
+  static async login(request, response) {
     // Getting user data 
     const { email, password } = request.body;
     // Finding the user
-    const user = User.findByEmail(email);
+    const user = await User.findByEmail(email);
     // Checking the information
     if (user != null && password === user.password) {
       // Generating the token
       const token = tokenizer.sign({id: user.id });
       response.send({ status: 200, data: { token } });
     } else {
-      response.send({ status: 406 });
+      response.send({ status: 406 , error : ['Incorrect username or password'] });
     }
   }
 
   /* Controller to register the user */
-  static register(request, response) {
+  static async register(request, response) {
     const user = new User(request.body);
     // Validating the user
-    const errors = user.validate();
+    const errors = await user.validate();
     if (errors.length === 0) {
-      user.save();
-      const token = tokenizer.sign({id: user.getId()});
+      await user.save();
+      const token = tokenizer.sign({id: await user.getId()});
       response.send({ status: 200, data: [{ token }] });
     } else {
       response.send({ status: 406, errors });
