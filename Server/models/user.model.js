@@ -1,7 +1,5 @@
 import usersTable from '../tables/users.table';
-import inboxTable from '../tables/inbox.table';
-import sentTable from '../tables/sent.table';
-import Message from './message.model';
+import connection from '../database/connection';
 
 class User {
   constructor(_user) {
@@ -21,15 +19,12 @@ class User {
   }
 
   /* Getting the user when you have the email */
-  static findByEmail(_email) {
-    let result = null;
-    usersTable.forEach((user) => {
-      const { email } = user;
-      if (email === _email) {
-        result = user;
-      }
-    });
-    return result;
+  static async findByEmail(_email) {
+    let { rows } = await connection.query('SELECT * FROM users WHERE email = $1',[_email]);
+    if (rows.length > 0) {
+      return rows[0];
+    } 
+    return null;
   }
 
   getUser() {
@@ -37,18 +32,18 @@ class User {
   }
 
   /* Saving the new user */
-  save() {
-    this.user.id = usersTable.length;
-    usersTable.push(this.user);
+  async save() {
+    const { rows } = await connection.query('INSERT INTO users(email,firstName,lastName,password) VALUES($1,$2,$3,$4) RETURNING *;',[this.user.email,this.user.firstName,this.user.lastName,this.user.password]);
+    this.user = rows[0];
   }
 
   /* Checking for validation */
-  validate() {
+  async validate() {
     const {
       email, firstName, lastName, password,
     } = this.user;
     const errors = [];
-    if (!email || User.findByEmail(email) != null) {
+    if (!email || await User.findByEmail(email) != null) {
       errors.push('email exist in the system');
     }
     if (!email || !email.match('^.+@[0-9a-zA-Z]+\\.[0-9a-zA-Z]+$')) {
@@ -69,65 +64,31 @@ class User {
 
   /* Getting the id of the user */
   getId() {
-    let result = null;
-    usersTable.forEach((user) => {
-      const { email } = user;
-      if (email === this.user.email) {
-        result = user.id;
-      }
-    });
-    return result;
+    return this.user.id;
   }
 
   /* Finding the messages in inbox by the user of relationship */
-  inbox () {
-    const result = [];
-    inboxTable.filter((value) => {
-      if (value.recieverId === this.user.id) {
-        result.push((new Message(Message.findById(value.messageId))).format());
-      }
-    });
-    return result;
+  async inbox () {
+    const { rows } = await connection.query('SELECT * FROM messages LEFT JOIN sent ON sent.messageid = id LEFT JOIN inbox ON inbox.messageid = id WHERE receiverid = $1 AND status NOT LIKE \'draft\'', [this.user.id]);
+      return rows;
   }
 
   /* Finding the messages which is unread */
-  unread() {
-    const result = [];
-    inboxTable.filter((value) => {
-      if (value.recieverId === this.user.id) {
-        const msg = Message.findById(value.messageId);
-        if (msg.status === 'sent') {
-          result.push((new Message(msg)).format());
-        }
-      }
-    });
-    return result;
+  async unread() {
+    const { rows } = await connection.query('SELECT * FROM messages LEFT JOIN sent ON sent.messageid = id LEFT JOIN inbox ON inbox.messageid = id WHERE receiverid = $1 AND status LIKE \'sent\'', [this.user.id]);
+    return rows;
   }
 
   /* Finding the messages which is drafted */
-  draft() {
-    const result = [];
-    sentTable.filter((value) => {
-      if (value.senderId === this.user.id) {
-        const msg = Message.findById(value.messageId);
-        if (msg.status === 'draft') {
-          result.push((new Message(msg)).format());
-        }
-      }
-    });
-    return result;
+  async draft() {
+    const { rows } = await connection.query('SELECT * FROM messages LEFT JOIN sent ON sent.messageid = id LEFT JOIN inbox ON inbox.messageid = id WHERE senderid = $1 AND status LIKE \'draft\'', [this.user.id]);
+    return rows;
   }
 
   /* Finding the messages that was sent */
-  sentMail() {
-    const result = [];
-    sentTable.filter((value) => {
-      if (value.senderId === this.user.id) {
-        const msg = Message.findById(value.messageId);
-        result.push((new Message(msg)).format());
-      }
-    });
-    return result;
+  async sentMail() {
+    const { rows }= await connection.query('SELECT * FROM messages LEFT JOIN sent ON sent.messageid = id LEFT JOIN inbox ON inbox.messageid = id WHERE senderid = $1 AND status NOT LIKE \'draft\'', [this.user.id]);
+    return rows;
   }
 }
 export default User;
