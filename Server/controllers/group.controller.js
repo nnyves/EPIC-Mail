@@ -8,7 +8,7 @@ class GroupController {
       const errors = Group.validate(request.body);
       if (errors.length > 0) {
         return response.json({
-          status: 401,
+          status: 400,
           errors,
         });
       }
@@ -17,20 +17,19 @@ class GroupController {
         memberid: request.user.id,
         groupid: data[0].id,
         role: 'admin',
-      }
+      };
       await GroupMember.save(admin);
       response.send({
-        status: 200,
+        status: 201,
         data,
       });
     } catch (err) {
       if (err.routine && err.routine === '_bt_check_unique') {
         response.send({
-          status: 401,
+          status: 400,
           error: ['Group name already exists'],
         });
       } else {
-        console.log(err);
         response.send({
           status: 500,
           error: ['Internal Error'],
@@ -61,7 +60,7 @@ class GroupController {
       const errors = Group.validate(request.body);
       if (errors.length > 0) {
         return response.send({
-          status: 406,
+          status: 400,
           errors,
         });
       }
@@ -73,12 +72,11 @@ class GroupController {
         });
       } else {
         response.send({
-          status: 406,
+          status: 400,
           error: ['Id not found'],
         });
       }
     } catch (err) {
-      console.log(err);
       response.send({
         status: 500,
         error: ['Internal Error'],
@@ -96,7 +94,7 @@ class GroupController {
         });
       } else {
         response.send({
-          status: 406,
+          status: 400,
           error: ['Id not found'],
         });
       }
@@ -108,11 +106,10 @@ class GroupController {
     }
   }
 
-  static async addMember(request, response) {   
+  static async addMember(request, response) {
     try {
       const memberid = request.body.userId;
       const groupid = request.params.group_id;
-      console.log({ memberid, groupid });
       const role = 'chat';
       const data = await GroupMember.save({ memberid, groupid, role });
       if (data.length > 0) {
@@ -122,12 +119,11 @@ class GroupController {
         });
       } else {
         response.send({
-          status: 406,
+          status: 400,
           error: ['Could not insert'],
         });
       }
     } catch (err) {
-      console.log(err);
       response.send({
         status: 500,
         error: ['Internal Error'],
@@ -135,11 +131,10 @@ class GroupController {
     }
   }
 
-  static async removeMember(request, response) {   
+  static async removeMember(request, response) {
     try {
       const memberid = request.params.user_id;
       const groupid = request.params.group_id;
-      console.log({ memberid, groupid });
       const data = await GroupMember.delete({ memberid, groupid });
       if (data.length > 0) {
         response.send({
@@ -148,12 +143,11 @@ class GroupController {
         });
       } else {
         response.send({
-          status: 406,
+          status: 400,
           error: ['Record does not exist'],
         });
       }
     } catch (err) {
-      console.log(err);
       response.send({
         status: 500,
         error: ['Internal Error'],

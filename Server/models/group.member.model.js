@@ -6,7 +6,7 @@ class groupMember {
     return rows;
   }
 
-  static async delete (groupmember) {
+  static async delete(groupmember) {
     const { rows } = await connection.query('DELETE FROM groupMembers WHERE groupid=$1 AND memberid=$2 RETURNING *', [groupmember.groupid, groupmember.memberid]);
     return rows;
   }

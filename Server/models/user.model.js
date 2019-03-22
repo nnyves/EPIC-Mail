@@ -1,29 +1,17 @@
-import usersTable from '../tables/users.table';
+/* eslint-disable prefer-destructuring */
 import connection from '../database/connection';
 
 class User {
   constructor(_user) {
     this.user = _user;
   }
-  
-  /* Getting the user when you have id */
-  static findByIdn(_id) {
-    let result = null;
-    usersTable.forEach((user) => {
-      const { id } = user;
-      if (id === _id) {
-        result = user;
-      }
-    });
-    return result;
-  }
 
   /* Getting the user when you have the email */
   static async findByEmail(_email) {
-    let { rows } = await connection.query('SELECT * FROM users WHERE email = $1',[_email]);
+    const { rows } = await connection.query('SELECT * FROM users WHERE email = $1', [_email]);
     if (rows.length > 0) {
       return rows[0];
-    } 
+    }
     return null;
   }
 
@@ -33,7 +21,7 @@ class User {
 
   /* Saving the new user */
   async save() {
-    const { rows } = await connection.query('INSERT INTO users(email,firstName,lastName,password) VALUES($1,$2,$3,$4) RETURNING *;',[this.user.email,this.user.firstName,this.user.lastName,this.user.password]);
+    const { rows } = await connection.query('INSERT INTO users(email,firstName,lastName,password) VALUES($1,$2,$3,$4) RETURNING *;', [this.user.email, this.user.firstName, this.user.lastName, this.user.password]);
     this.user = rows[0];
   }
 
@@ -68,9 +56,9 @@ class User {
   }
 
   /* Finding the messages in inbox by the user of relationship */
-  async inbox () {
+  async inbox() {
     const { rows } = await connection.query('SELECT * FROM messages LEFT JOIN sent ON sent.messageid = id LEFT JOIN inbox ON inbox.messageid = id WHERE receiverid = $1 AND status NOT LIKE \'draft\'', [this.user.id]);
-      return rows;
+    return rows;
   }
 
   /* Finding the messages which is unread */
@@ -87,7 +75,7 @@ class User {
 
   /* Finding the messages that was sent */
   async sentMail() {
-    const { rows }= await connection.query('SELECT * FROM messages LEFT JOIN sent ON sent.messageid = id LEFT JOIN inbox ON inbox.messageid = id WHERE senderid = $1 AND status NOT LIKE \'draft\'', [this.user.id]);
+    const { rows } = await connection.query('SELECT * FROM messages LEFT JOIN sent ON sent.messageid = id LEFT JOIN inbox ON inbox.messageid = id WHERE senderid = $1 AND status NOT LIKE \'draft\'', [this.user.id]);
     return rows;
   }
 }

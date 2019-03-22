@@ -14,18 +14,20 @@ const messagesTable = `CREATE TABLE IF NOT EXISTS messages(
    subject TEXT,
    message TEXT,
    parentMessageId INTEGER,
-   status VARCHAR(10));`;
+   status VARCHAR(10) DEFAULT 'sent');`;
 
 const sentTable = `CREATE TABLE IF NOT EXISTS sent(
-    senderId INTEGER REFERENCES users(id),
-    messageId INTEGER REFERENCES messages(id),
-    createdOn TIMESTAMP DEFAULT NOW()
+    senderId INTEGER REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    messageId INTEGER REFERENCES messages(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    createdOn TIMESTAMP DEFAULT NOW(),
+    PRIMARY KEY(senderId,messageId)
 );`;
 
 const inboxTable = `CREATE TABLE IF NOT EXISTS inbox (
-    receiverId INTEGER REFERENCES users(id),
-    messageId INTEGER REFERENCES messages(id),
-    createdOn TIMESTAMP NOT NULL DEFAULT NOW()
+    receiverId INTEGER REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    messageId INTEGER REFERENCES messages(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    createdOn TIMESTAMP NOT NULL DEFAULT NOW(),
+    PRIMARY KEY(receiverId,messageId)
 );`;
 
 const groupTable = `CREATE TABLE IF NOT EXISTS groups(
@@ -35,7 +37,9 @@ const groupTable = `CREATE TABLE IF NOT EXISTS groups(
 
 const groupMembersTable = `CREATE TABLE IF NOT EXISTS groupMembers(
     groupId INTEGER REFERENCES groups(id),
-    memberId INTEGER REFERENCES users(id)
+    memberId INTEGER REFERENCES users(id),
+    role VARCHAR(25) DEFAULT 'chat',
+    PRIMARY KEY(groupId,memberId)
 );`;
 
 const sql = [usersTable, messagesTable, inboxTable, sentTable, groupTable, groupMembersTable];

@@ -1,9 +1,8 @@
-import connection from '../database/connection'
+import connection from '../database/connection';
 
 class Group {
-
   static validate({ groupName }) {
-    return groupName && groupName.match('^[a-zA-Z0-9]*[a-zA-Z]+[a-zA-Z0-9]*$')?[]:['Invalid group name'];
+    return groupName && groupName.match('^[a-zA-Z0-9]*[a-zA-Z]+[a-zA-Z0-9]*$') ? [] : ['Invalid group name'];
   }
 
   static async save(group) {
@@ -18,12 +17,12 @@ class Group {
   }
 
   static async delete(id) {
-    const { rows }  = await connection.query('DELETE FROM groups WHERE id=$1 RETURNING *', [id]);
+    const { rows } = await connection.query('DELETE FROM groups WHERE id=$1 RETURNING *', [id]);
     return rows;
   }
 
   static async findGroupAdmin(id) {
-    const { rows } = await connection.query('SELECT * FROM groupMembers WHERE groupid = $1 AND role=\'admin\'',[id]);
+    const { rows } = await connection.query('SELECT * FROM groupMembers WHERE groupid = $1 AND role=\'admin\'', [id]);
     return rows;
   }
 }
