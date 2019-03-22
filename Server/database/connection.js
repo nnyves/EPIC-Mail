@@ -3,6 +3,6 @@ import { Pool } from 'pg';
 
 dotenv.config();
 const connection = new Pool(
-  { connectionString: process.env.CONNECTIONSTRING || process.env.CONNECTION_URL },
+  { connectionString: process.env.CONNECTIONSTRING || process.env.DATABASE_URL },
 );
 export default connection;
